@@ -1,4 +1,7 @@
-# UI for SER 574 semester project. 
+# UI for project analzyer
+This web application is depolyed on firebas, click [here](https://hongfei-project-analyzer.firebaseapp.com/) to visit.
+Here is the web UI for helping the professor track the code quality of projects in different courses.
+The panel on the left shows the course list, course managment options and data management options.
+The main window shows all the projects in the selected course;
 
-1. This application doesn't reqiure the user to take any action in order to use it.
-2. Simply navigate to: https://ser574-redteam-ui.firebaseapp.com/ .The application code has been deployed there via Firebase.
+
