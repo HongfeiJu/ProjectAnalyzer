@@ -35,12 +35,6 @@
 
                 <br>
                 <v-text-field
-                        v-model="projectData.taigaSlug"
-                        :counter="50"
-                        label="Taiga Slug"
-                        required
-                ></v-text-field>
-                <v-text-field
                         v-model="projectData.githubSlug"
                         :counter="50"
                         label="Github Slug"
@@ -89,8 +83,7 @@
                 valid: true,
                 projectData:{
                     projectName: "",
-                    taigaSlug:"",
-                    githubSlug:"",
+                    members:"",
                     description:""
                 },
                 rules:{
@@ -120,6 +113,7 @@
                 console.log("name: "+this.projectData.projectName);
                 this.courses[this.activeCourse].projects.push({
                     title: this.projectData.projectName,
+                    members: this.projectData.members,
                     description: this.projectData.description
                 });
                 console.log(this.courses);

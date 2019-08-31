@@ -3,8 +3,8 @@
         <v-container width="100%">
             <v-container>
                 <v-layout justify-center>
-                    <ComboChart :data="data[0]" title="commit"></ComboChart>
-                    <ComboChart :data="data[1]" title="pull request"></ComboChart>
+                    <ComboChart :data="commitAndPullRequestData[0]" title="commit"></ComboChart>
+                    <ComboChart :data="commitAndPullRequestData[1]" title="pull request"></ComboChart>
                 </v-layout>
             </v-container>
         </v-container>
@@ -19,6 +19,11 @@
         components: {
             ComboChart
         },
-        props: ["data"]
+        computed: {
+            commitAndPullRequestData() {
+                return this.$store.state.courses[this.$store.state.activeCourse]
+                    .projects[this.$route.params.pi].data.commitAndPullRequest;
+            }
+        },
     }
 </script>

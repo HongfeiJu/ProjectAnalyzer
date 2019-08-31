@@ -1,11 +1,10 @@
 <template>
     <v-card>
         <v-container width="100%">
-            <h4>{{title}}</h4>
             <v-layout justify-center>
                 <GChart
                         type="LineChart"
-                        :data="storyPoints"
+                        :data="burndownData"
                         :options="{
                                 title: 'Burn down chart',
                                 legend: { position: 'right' },
@@ -34,28 +33,13 @@
         components: {
             GChart
         },
-        props: ["data"],
-        data() {
-            return {
-                storyPoints: [
-                    ['day', 'Story points'],
-                    ['1', 40],
-                    ['2', 37],
-                    ['3', 35],
-                    ['4', 30],
-                    ['5', 27],
-                    ['6', 23],
-                    ['7', 20],
-                    ['8', 16],
-                    ['9', 10],
-                    ['10', 8],
-                    ['11', 2],
-                    ['12', 1],
-                    ['13', 1],
-                    ['14', 0]
-                ],
+        computed: {
+            burndownData() {
+                return this.$store.state.courses[this.$store.state.activeCourse]
+                    .projects[this.$route.params.pi].data.burndown;
             }
-        }
+        },
+
     }
 </script>
 

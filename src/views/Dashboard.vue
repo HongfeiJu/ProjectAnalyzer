@@ -41,7 +41,7 @@
                             xs12
                             pa-1
                     >
-                        <project-summary :project="project" :index="index+1"></project-summary>
+                        <project-summary :project="project"  :projectIndex="index"></project-summary>
                     </v-flex>
                 </v-layout>
             </v-flex>
@@ -53,28 +53,12 @@
     import CourseList from "../components/CourseList";
     import ControlPanel from "../components/ControlPanel";
     import NewProjectForm from "../components/NewProjectForm";
-    import ProjectSummary from "../components/ProjectSummary";
+    import ProjectSummary from "../components/ProjectCard";
 
     export default {
         name: "DashboardExtent",
         components: {CourseList, ProjectSummary, NewProjectForm, ControlPanel},
-        data() {
-            return {
-                dialog: false,
-                activeProject:{
-                    name: 'project 1', route: '/github', icon: 'dashboard'
-                },
-                showNewProject:false,
-                hover: true,
-                gridSize: 'xl'
-            }
-        },
         computed: {
-            binding() {
-                const binding = {};
-                if (this.$vuetify.breakpoint.mdAndUp) binding.column = true;
-                return binding
-            },
             courses() {
                 return this.$store.state.courses;
             },
@@ -83,9 +67,6 @@
             }
         },
         methods:{
-            showCourse: function (index) {
-                this.activeCourse = index;
-            },
             createProject:function(project){
                 this.courses[this.activeCourse].projects.push({
                     name: project.projectName,
@@ -93,7 +74,6 @@
                     taigaSlug: project.taigaSlug,
                     description: project.description
                 });
-                this.showNewProject=false;
             },
             uploadData() {
                 this.$http.put('https://hongfei-project-analyzer.firebaseio.com/courses.json', this.courses)

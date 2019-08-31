@@ -22,8 +22,8 @@
                 <template slot="items" slot-scope="props">
                     <td class="text-xs-left">{{ props.item.name }}</td>
                     <td class="text-xs-left">{{ props.item.property1 }}</td>
-                    <td class="text-xs-left">{{ props.item.property2 }}</td>
-                    <td class="text-xs-left">{{ props.item.property3 }}</td>
+                    <td class="text-xs-left" v-if="props.item.property2 !== undefined">{{ props.item.property2 }}</td>
+                    <td class="text-xs-left" v-if="props.item.property3 !== undefined">{{ props.item.property3 }}</td>
                 </template>
                 <v-alert slot="no-results" :value="true" color="error" icon="warning">
                     Your search for "{{ search }}" found no results.

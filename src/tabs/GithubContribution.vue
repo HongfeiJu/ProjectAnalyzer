@@ -3,8 +3,8 @@
         <v-container width="100%">
             <v-container>
                 <v-layout justify-center>
-                    <pie-chart :data="data[0]" title="contribution by pull request"></pie-chart>
-                    <pie-chart :data="data[1]" title="contribution by commit"></pie-chart>
+                    <pie-chart :data="contributionData[0]" title="contribution by pull request"></pie-chart>
+                    <pie-chart :data="contributionData[1]" title="contribution by commit"></pie-chart>
                 </v-layout>
             </v-container>
         </v-container>
@@ -19,6 +19,11 @@
         components: {
             PieChart
         },
-        props: ["data"]
+        computed: {
+            contributionData() {
+                return this.$store.state.courses[this.$store.state.activeCourse]
+                    .projects[this.$route.params.pi].data.contribution;
+            }
+        },
     }
 </script>
